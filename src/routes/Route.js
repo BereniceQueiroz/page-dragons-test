@@ -4,7 +4,10 @@ import AuthLayout from '~/pages/_layouts/auth';
 import DefaultLayout from '~/pages/_layouts/default';
 
 function RouteWrapper({ component: Component, isPrivate = false, ...rest }) {
-  const signed = false;
+  const signed = JSON.parse(localStorage.getItem('@Dragon:isLogged'))
+    ? true
+    : false;
+
   if (!signed && isPrivate) {
     return <Redirect to="/" />;
   }

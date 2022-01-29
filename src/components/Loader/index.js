@@ -15,8 +15,8 @@ export default function Loader({
   size = LOADER_TYPES.size.small,
 }) {
   return (
-    <S.Spinner viewBox="0 0 40 40" color={color} size={size}>
+    <Spinner viewBox="0 0 40 40" color={color} size={size}>
       <circle cx="20" cy="20" r="15" fill="none" strokeWidth="4" />
-    </S.Spinner>
+    </Spinner>
   );
 }
