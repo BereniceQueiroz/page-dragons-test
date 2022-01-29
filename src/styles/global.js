@@ -1,6 +1,6 @@
 import { createGlobalStyle, css } from 'styled-components';
 
-const GlobalStyles = createGlobalStyle`
+export default createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
       body,
       html,
       #root {
+        height: 100vh;
         @media (max-width: 1080px) {
           font-size: 93.75%
         }
@@ -60,5 +61,3 @@ const GlobalStyles = createGlobalStyle`
       }
     `}
   `;
-
-export default GlobalStyles;

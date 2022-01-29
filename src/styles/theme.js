@@ -62,7 +62,7 @@ export default {
     blue: '#5429CC',
     blueLigth: '#6933FF',
     green: '#33CC95',
-    red: '#E62E4D',
+    messageError: '#E62E4D',
     shap: '#FFFFFF',
     title: '#363F5F',
     text: '#969CB2',
