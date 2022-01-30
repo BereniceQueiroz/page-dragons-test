@@ -1,30 +1,21 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { api } from '~/services/api';
 
 const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState([]);
-  const [data, setData] = useState([]);
+  const [list, setList] = useState([]);
 
   useEffect(() => {
-    api.get('/api/v1/dragon').then(response => setData(response.data));
+    api.get('/api/v1/dragon').then(response => setList(response.data));
   }, []);
 
-  if (!data) {
+  if (!list) {
     return null;
   }
-
-  data.sort(function (a, b) {
-    if (a.name > b.name) {
-      return 1;
-    }
-    if (a.name < b.name) {
-      return -1;
-    }
-    return 0;
-  });
 
   async function createItem({ name, type, histories }) {
     const data = {
@@ -33,10 +24,37 @@ export function AuthProvider({ children }) {
       histories,
       createdAt: new Date(),
     };
-    api.post('/api/v1/dragon', data).then(response => setData(response.data));
+    api
+      .post('/api/v1/dragon', data)
+      .then(response => {
+        setList([...list, response.data]);
+        toast.success('Item criado.');
+      })
+      .catch(err => {
+        console.log(err);
+        toast.error('Falha no cadastro', {
+          position: 'top-right',
+          autoClose: 5000,
+        });
+      });
   }
-  // .then(res => setData(...data, res.data.body));
-  // }
+
+  async function deleteItem({ id }) {
+    api
+      .post(`/api/v1/dragon/${id}`)
+      .then(response => {
+        setData(response.data);
+        toast.success('Item excluído.');
+        console.log('aqui');
+      })
+      .catch(err => {
+        console.log(err);
+        toast.error('Falha na exclusão', {
+          position: 'top-right',
+          autoClose: 5000,
+        });
+      });
+  }
 
   async function createUser({ name, email, password }) {
     const formData = {
@@ -53,9 +71,8 @@ export function AuthProvider({ children }) {
     localStorage.setItem('@Dragon:isLogged', true);
   }
 
-  console.log(data);
   return (
-    <AuthContext.Provider value={{ data, createItem, createUser }}>
+    <AuthContext.Provider value={{ list, createItem, deleteItem, createUser }}>
       {children}
     </AuthContext.Provider>
   );

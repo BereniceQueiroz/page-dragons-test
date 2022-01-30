@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import GlobalStyle from './styles/global';
 import { AuthProvider } from './hooks/useAuth';
 import { ThemeProvider } from 'styled-components';
@@ -11,6 +12,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Routes />
         <GlobalStyle />
+        <ToastContainer autoClose={3000} />
       </ThemeProvider>
     </AuthProvider>
   );

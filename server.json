@@ -286,6 +286,20 @@
       },
       "body": "{\"name\":\"Berenice\",\"email\":\"berenice@teste.com.br\",\"password\":\"123456\"}",
       "id": 44
+    },
+    {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"name\":\"Berenice\",\"email\":\"berenice@teste.com.br\",\"password\":\"123456\"}",
+      "id": 45
+    },
+    {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"name\":\"Berenice\",\"email\":\"berenice@teste.com.br\",\"password\":\"123456\"}",
+      "id": 46
     }
   ]
 }

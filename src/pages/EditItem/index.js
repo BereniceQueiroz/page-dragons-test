@@ -8,11 +8,11 @@ import { components } from '~/assets';
 import { useAuth } from '~/hooks/useAuth';
 
 function Dashboard() {
-  const { list, deleteItem } = useAuth();
+  const { data, deleteItem } = useAuth();
   const [isNewItemModalOpen, setIsNewItemModalOpen] = useState(false);
 
-  if (list.length >= 1) {
-    list.sort(function (a, b) {
+  if (data.length > 0) {
+    data.sort(function (a, b) {
       if (a.name > b.name) {
         return 1;
       }
@@ -35,12 +35,12 @@ function Dashboard() {
     await deleteItem({ id });
   }
 
-  console.log(list);
+  console.log(data);
   return (
     <Wrapper>
       <Header />
       <List>
-        <h1>Lista de dragões</h1>
+        <h1>Detalhes</h1>
         <Table>
           <thead>
             <tr>
@@ -51,21 +51,20 @@ function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {list.length > 0 &&
-              list.map(d => {
-                return (
-                  <tr key={d.id}>
-                    <td>{d.name}</td>
-                    <td>{d.type}</td>
-                    <td>{d.histories}</td>
-                    <td>{moment(d.createdAt).format('L')}</td>
-                    <div>
-                      <components.Edit />
-                      <components.Exit onClick={() => handleDeleteItem(d.id)} />
-                    </div>
-                  </tr>
-                );
-              })}
+            {data.map(d => {
+              return (
+                <tr key={d.id}>
+                  <td>{d.name}</td>
+                  <td>{d.type}</td>
+                  <td>{d.histories}</td>
+                  <td>{moment(d.createdAt).format('L')}</td>
+                  <div>
+                    <components.Edit />
+                    <components.Exit onClick={() => handleDeleteItem(d.id)} />
+                  </div>
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
         <Button onClick={handleOpenNewItemModal}>Adicionar Novo</Button>
