@@ -26,6 +26,6 @@ ou
 
 ### `yarn server`
 
-Após testes passos, será possivel criar uma cadastro de usuário e acessar a área logada.
+Após estes passos, será possivel criar uma cadastro de usuário e acessar a área logada.
 
-Onde será possivel, verificar a lista de itens cadastrados, excluir item, adicionar novo item a lista e editar.
+Onde será possivel, verificar a lista de itens cadastrados, excluir item, adicionar novo item a lista e editar um item existente.
