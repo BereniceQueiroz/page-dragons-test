@@ -19,11 +19,11 @@ function Dashboard() {
     setIsNewItemModalOpen(false);
   }
 
-  function handleRemoveDragon(id) {
-    api.delete(`/api/v1/dragon/${id}`).then(res => {
-      console.log(res);
-    });
-  }
+  // function handleRemoveDragon(id) {
+  //   api.delete(`/api/v1/dragon/${id}`).then(res => {
+  //     console.log(res);
+  //   });
+  // }
 
   return (
     <Wrapper>
@@ -47,9 +47,9 @@ function Dashboard() {
                   <td>{d.type}</td>
                   <td>{d.histories}</td>
                   <td>
-                    {new Intl.DateTimeFormat('pt-BR').format(
+                    {/* {new Intl.DateTimeFormat('pt-BR').format(
                       new Date(d.createdAt),
-                    )}
+                    )} */}
                   </td>
                   <div>
                     <components.Edit />

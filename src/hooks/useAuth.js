@@ -27,18 +27,16 @@ export function AuthProvider({ children }) {
   });
 
   async function createItem({ name, type, histories }) {
-    const formData = {
+    const data = {
       name,
       type,
       histories,
       createdAt: new Date(),
     };
-    const response = await api.post('/api/v1/dragon', {
-      ...formData,
-      createdAt: new Date(),
-    });
-    console.log(response);
+    api.post('/api/v1/dragon', data).then(response => setData(response.data));
   }
+  // .then(res => setData(...data, res.data.body));
+  // }
 
   async function createUser({ name, email, password }) {
     const formData = {
