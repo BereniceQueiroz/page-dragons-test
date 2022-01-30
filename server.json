@@ -251,6 +251,41 @@
       },
       "body": "{\"name\":\"Maria\",\"email\":\"teste@123456\",\"password\":\"123456\"}",
       "id": 39
+    },
+    {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"name\":\"Maria\",\"email\":\"teste@teste\",\"password\":\"123456\"}",
+      "id": 40
+    },
+    {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"name\":\"Berenice\",\"email\":\"berenice@teste.com.br\",\"password\":\"123456\"}",
+      "id": 41
+    },
+    {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"name\":\"Berenice\",\"email\":\"berenice@teste\",\"password\":\"123456\"}",
+      "id": 42
+    },
+    {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"name\":\"Berenice\",\"email\":\"teste@12345\",\"password\":\"12345\"}",
+      "id": 43
+    },
+    {
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"name\":\"Berenice\",\"email\":\"berenice@teste.com.br\",\"password\":\"123456\"}",
+      "id": 44
     }
   ]
 }

@@ -1,10 +1,44 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { api } from '~/services/api';
 
 const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState([]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    api.get('/api/v1/dragon').then(response => setData(response.data));
+  }, []);
+
+  if (!data) {
+    return null;
+  }
+
+  data.sort(function (a, b) {
+    if (a.name > b.name) {
+      return 1;
+    }
+    if (a.name < b.name) {
+      return -1;
+    }
+    return 0;
+  });
+
+  async function createItem({ name, type, histories }) {
+    const formData = {
+      name,
+      type,
+      histories,
+      createdAt: new Date(),
+    };
+    const response = await api.post('/api/v1/dragon', {
+      ...formData,
+      createdAt: new Date(),
+    });
+    console.log(response);
+  }
 
   async function createUser({ name, email, password }) {
     const formData = {
@@ -21,9 +55,9 @@ export function AuthProvider({ children }) {
     localStorage.setItem('@Dragon:isLogged', true);
   }
 
-  console.log(user);
+  console.log(data);
   return (
-    <AuthContext.Provider value={{ createUser }}>
+    <AuthContext.Provider value={{ data, createItem, createUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -25,6 +25,7 @@ export const Content = styled.div`
     width: 250px;
     height: 250px;
     margin-bottom: 40px;
+    border-radius: 50%;
   }
 
   h1 {

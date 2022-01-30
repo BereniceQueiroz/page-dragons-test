@@ -40,7 +40,6 @@ function SignUp() {
           placeholder="Informe seu nome"
           value={name}
           onChange={e => setName(e.target.value)}
-          error={'Informe nome e sobrenome'}
         />
         <Input
           type="email"
@@ -48,7 +47,6 @@ function SignUp() {
           placeholder="Informe seu usuário"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          error={'Informe um e-mail válido'}
         />
         <Input
           icon
@@ -56,7 +54,6 @@ function SignUp() {
           placeholder="******"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          error={'Informe uma senha válida'}
         />
         <Button type="submit" defaultButton>
           {isLoading ? <Loader /> : 'Cadastrar conta'}
