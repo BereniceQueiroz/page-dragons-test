@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <Wrapper>
       <img
-        onClick={() => history.push('/home')}
+        onClick={() => history.push('/dashboard')}
         src={images.logo}
         alt="Logo da empresa"
       />

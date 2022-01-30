@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Button from '~/components/Button';
 import Header from '~/components/Header';
 import NewItemModal from '~/components/NewItemModal';
+import history from '~/services/history';
 import { Wrapper, List, Table } from './styles';
 import { components } from '~/assets';
 import { useAuth } from '~/hooks/useAuth';
@@ -35,7 +37,11 @@ function Dashboard() {
     await deleteItem({ id });
   }
 
-  console.log(list);
+  const handleEditItem = id => {
+    history.push('/edit/' + id);
+    location.reload();
+  };
+
   return (
     <Wrapper>
       <Header />
@@ -60,7 +66,8 @@ function Dashboard() {
                     <td>{d.histories}</td>
                     <td>{moment(d.createdAt).format('L')}</td>
                     <div>
-                      <components.Edit />
+                      <components.Edit onClick={() => handleEditItem(d.id)} />
+
                       <components.Exit onClick={() => handleDeleteItem(d.id)} />
                     </div>
                   </tr>

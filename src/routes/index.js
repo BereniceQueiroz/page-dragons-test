@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import Route from './Route';
 
-// import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
-import Dashboard from '~/pages/Dashboard';
+
 import EditItem from '~/pages/EditItem';
+import Dashboard from '~/pages/Dashboard';
 
 function Routes() {
   return (
@@ -13,7 +13,7 @@ function Routes() {
       <Switch>
         <Route path="/" exact component={SignUp} />
         <Route path="/dashboard" exact component={Dashboard} isPrivate />
-        <Route path="/edit/:id" component={EditItem} />
+        <Route path="/edit/:id" component={EditItem} isPrivate />
 
         <Route path="/" component={() => <h1>404</h1>} />
       </Switch>

@@ -56,6 +56,23 @@ export function AuthProvider({ children }) {
       });
   }
 
+  async function updateItem({ id }) {
+    api
+      .put(`/api/v1/dragon/${id}`)
+      .then(response => {
+        setData(response.data);
+        toast.success('Item editado.');
+        console.log('aqui');
+      })
+      .catch(err => {
+        console.log(err);
+        toast.error('Falha na ediçao', {
+          position: 'top-right',
+          autoClose: 5000,
+        });
+      });
+  }
+
   async function createUser({ name, email, password }) {
     const formData = {
       name,
@@ -72,7 +89,9 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ list, createItem, deleteItem, createUser }}>
+    <AuthContext.Provider
+      value={{ list, createItem, deleteItem, updateItem, createUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
