@@ -56,17 +56,23 @@ export function AuthProvider({ children }) {
       });
   }
 
-  async function updateItem({ id }) {
+  async function updateItem({ id, name, type, histories }) {
+    const data = {
+      name,
+      type,
+      histories,
+    };
     api
-      .put(`/api/v1/dragon/${id}`)
+      .put(`/api/v1/dragon/${id}`, data)
       .then(response => {
-        setData(response.data);
+        setList(response.data);
         toast.success('Item editado.');
+        window.location.reload();
         console.log('aqui');
       })
       .catch(err => {
         console.log(err);
-        toast.error('Falha na ediçao', {
+        toast.error('Falha na edição', {
           position: 'top-right',
           autoClose: 5000,
         });

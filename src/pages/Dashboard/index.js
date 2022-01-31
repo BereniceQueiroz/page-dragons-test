@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Button from '~/components/Button';
 import Header from '~/components/Header';
+import EditItemModal from '~/components/EditItemModal';
 import NewItemModal from '~/components/NewItemModal';
-import history from '~/services/history';
 import { Wrapper, List, Table } from './styles';
 import { components } from '~/assets';
 import { useAuth } from '~/hooks/useAuth';
 
 function Dashboard() {
-  const { list, deleteItem } = useAuth();
+  const { list, deleteItem, updateItem } = useAuth();
   const [isNewItemModalOpen, setIsNewItemModalOpen] = useState(false);
+  const [isEditModal, setIsEditModalOpen] = useState(false);
+  const [idEdit, setIdEdit] = useState('');
 
   if (list.length >= 1) {
     list.sort(function (a, b) {
@@ -33,14 +34,18 @@ function Dashboard() {
     setIsNewItemModalOpen(false);
   }
 
+  function handleOpenEditModal(id) {
+    setIsEditModalOpen(true);
+    setIdEdit(id);
+  }
+
+  function handleCloseEditModal() {
+    setIsEditModalOpen(false);
+  }
+
   async function handleDeleteItem(id) {
     await deleteItem({ id });
   }
-
-  const handleEditItem = id => {
-    history.push('/edit/' + id);
-    location.reload();
-  };
 
   return (
     <Wrapper>
@@ -66,9 +71,10 @@ function Dashboard() {
                     <td>{d.histories}</td>
                     <td>{moment(d.createdAt).format('L')}</td>
                     <div>
-                      <components.Edit onClick={() => handleEditItem(d.id)} />
-
-                      <components.Exit onClick={() => handleDeleteItem(d.id)} />
+                      <components.Edit
+                        onClick={() => handleOpenEditModal(d.id)}
+                      />
+                      <components.Exit onClick={handleDeleteItem} />
                     </div>
                   </tr>
                 );
@@ -80,6 +86,11 @@ function Dashboard() {
       <NewItemModal
         isOpen={isNewItemModalOpen}
         onRequestClose={handleCloseNewItemModal}
+      />
+      <EditItemModal
+        isOpen={isEditModal}
+        onRequestClose={handleCloseEditModal}
+        id={idEdit}
       />
     </Wrapper>
   );
